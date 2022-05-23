@@ -24,8 +24,13 @@ def find_song(song_id):
 
     audio_features = sp.audio_features(song_id)[0]
 
+    try:
+        year = int(result["album"]["release_date"][:4])
+    except ValueError:
+        return pd.DataFrame({})
+
     song_data["name"] = [result["name"]]
-    song_data["year"] = [int(result["album"]["release_date"][:4])]
+    song_data["year"] = [year]
     song_data["explicit"] = [int(result["explicit"])]
     song_data["duration_ms"] = [result["duration_ms"]]
     song_data["popularity"] = [result["popularity"]]

@@ -42,21 +42,19 @@ def get_mean_vector(songs_data):
     return np.mean(song_matrix, axis=0)
 
 
-def get_songs_data(song_list, spotify_data):
+def get_songs_data(song_list):
     songs_data = []
 
     for song_id in song_list:
         to_append = None
 
         try:
-            to_append = spotify_data[spotify_data["id"] == song_id].iloc[0]
+            to_append = data[data["id"] == song_id].iloc[0]
         except IndexError:
             to_append = find_song(song_id=song_id)
 
         if to_append.empty:
-            print(
-                "Warning: {} does not exist in Spotify and in dataset".format(song_id)
-            )
+            print("Warning: {} does not exist in Spotify and in data".format(song_id))
             continue
         else:
             songs_data.append(to_append)
@@ -64,10 +62,8 @@ def get_songs_data(song_list, spotify_data):
     return songs_data
 
 
-def recommend_songs_from_multiple(
-    song_list, spotify_data, n_songs=10, isPlaylist=False
-):
-    songs_data = get_songs_data(song_list, spotify_data)
+def recommend_songs_from_multiple(song_list, n_songs=10, isPlaylist=False):
+    songs_data = get_songs_data(song_list, data)
     song_center = get_mean_vector(songs_data)
 
     if song_center == []:
@@ -77,7 +73,7 @@ def recommend_songs_from_multiple(
     distances = cdist(scaled_song_center, scaled_data, "cosine")
     index = list(np.argsort(distances)[:, : n_songs * 2][0])
 
-    rec_songs = spotify_data.iloc[index]
+    rec_songs = data.iloc[index]
 
     if isPlaylist:
         rec_songs = rec_songs[~rec_songs["id"].isin(song_list)]
@@ -87,14 +83,14 @@ def recommend_songs_from_multiple(
     return list(rec_songs["id"])
 
 
-def recommend_songs_from_single(song_id, dataset, n_songs=10):
+def recommend_songs_from_single(song_id, n_songs=10):
     try:
-        song_data = dataset[dataset["id"] == song_id].iloc[0]
+        song_data = data[data["id"] == song_id].iloc[0]
     except IndexError:
         song_data = find_song(song_id=song_id)
 
     if song_data.empty:
-        print("Warning: {} does not exist in Spotify and in dataset.".format(song_id))
+        print("Warning: {} does not exist in Spotify and in data.".format(song_id))
         return None
 
     song_vector = np.array(song_data[number_cols].values)
@@ -102,6 +98,6 @@ def recommend_songs_from_single(song_id, dataset, n_songs=10):
     distances = cdist(scaled_song_vector, scaled_data, "cosine")
     index = list(np.argsort(distances)[:, : n_songs + 1][0])
 
-    rec_songs = dataset.iloc[index][1:]
+    rec_songs = data.iloc[index][1:]
 
     return list(rec_songs["id"])
