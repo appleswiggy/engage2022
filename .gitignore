@@ -1,1 +1,5 @@
 engine/.env
+engine/__pycache__/
+data/
+engine/.cache
+html.py
