@@ -3,6 +3,9 @@ import numpy as np
 from search_spotify import find_song
 from scipy.spatial.distance import cdist
 from joblib import load
+import warnings
+
+warnings.filterwarnings("ignore")
 
 number_cols = [
     "valence",
@@ -63,7 +66,7 @@ def get_songs_data(song_list):
 
 
 def recommend_songs_from_multiple(song_list, n_songs=10, isPlaylist=False):
-    songs_data = get_songs_data(song_list, data)
+    songs_data = get_songs_data(song_list)
     song_center = get_mean_vector(songs_data)
 
     if song_center == []:
