@@ -4,6 +4,8 @@ import {
   DotsHorizontalIcon,
   SearchIcon,
   HomeIcon,
+  HeartIcon,
+  CollectionIcon
 } from "@heroicons/react/solid";
 import Image from "next/image"
 
@@ -19,7 +21,9 @@ function Sidebar() {
       <div className="flex flex-col space-y-8">
         <HomeIcon className="sidebarIcon" />
         <SearchIcon className="sidebarIcon" />
+        <HeartIcon className="sidebarIcon" />
         <ClockIcon className="sidebarIcon" />
+        <CollectionIcon className="sidebarIcon" />
         <ChartBarIcon className="sidebarIcon" />
         <DotsHorizontalIcon className="sidebarIcon" />
       </div>

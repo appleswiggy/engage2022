@@ -22,7 +22,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      body: ["Merriweather", "serif"],
+      body: ["Anadada Pro", "serif"],
       sans: ["ui-sans-serif", "system-ui"],
     },
   },
