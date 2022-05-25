@@ -12,10 +12,13 @@
 
 @layer components {
   .sidebarIcon {
-    @apply h-6 text-[#707070] cursor-pointer;
+    @apply h-6 text-[#707070] cursor-pointer hover:text-white;
   }
-  .sidebarIcon:hover {
-    @apply text-white;
+
+  .sidebarTooltip {
+    @apply absolute w-auto p-2 mx-[20px] my-[-25px] min-w-max left-14 rounded-md shadow-md
+    text-white bg-gray-900 text-xs font-bold transition-all duration-100
+    origin-left scale-0;
   }
 
   .tag {
