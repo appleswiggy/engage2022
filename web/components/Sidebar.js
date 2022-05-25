@@ -11,7 +11,7 @@ import Image from "next/image"
 
 function Sidebar() {
   return (
-    <section className="fixed top-0 z-40 flex flex-col p-4 items-center bg-gray-900 w-[70px] h-screen space-y-8">
+    <section className="fixed top-0 z-40 flex flex-col p-4 items-center shadow-lg bg-gray-900 w-[70px] h-screen space-y-8">
       <Image
         src="https://rb.gy/xkacau"
         width={56}
