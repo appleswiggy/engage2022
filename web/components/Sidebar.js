@@ -5,7 +5,7 @@ import {
 import Image from "next/image"
 import Link from "next/link";
 
-function Sidebar() {
+function Sidebar( {light} ) {
   return (
     <section className="fixed top-0 z-40 flex flex-col p-4 items-center shadow-lg bg-gray-900 w-[70px] h-screen space-y-8">
       <Image
@@ -17,44 +17,54 @@ function Sidebar() {
       <div className="flex flex-col space-y-8">
         <div className="group">
           <Link href="/">
-            <HomeIcon className="sidebarIcon" />
+            <HomeIcon className={"sidebarIcon" + " " + ((light === 0) ? "text-white" : "")} />
           </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Home
           </span>
         </div>
         <div className="group">
-          <SearchIcon className="sidebarIcon" />
+          <Link href="/search">
+            <SearchIcon className={"sidebarIcon" + " " + ((light === 1) ? "text-white" : "")} />
+          </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Search
           </span>
         </div>
         <div className="group">
-          <HeartIcon className="sidebarIcon" />
+          <Link href="/liked">
+            <HeartIcon className={"sidebarIcon" + " " + ((light === 2) ? "text-white" : "")} />
+          </Link>   
           <span className="sidebarTooltip group-hover:scale-100">
             Liked songs
           </span>
         </div>
         <div className="group">
-          <ClockIcon className="sidebarIcon" />
+          <Link href="/recents">
+            <ClockIcon className={"sidebarIcon" + " " + ((light === 3) ? "text-white" : "")} />
+          </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Recently Played
           </span>
         </div>
         <div className="group">
-          <CollectionIcon className="sidebarIcon" />
+          <Link href="/recommendations">
+            <CollectionIcon className={"sidebarIcon" + " " + ((light === 4) ? "text-white" : "")} />
+          </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Explore
           </span>
         </div>
         <div className="group">
-          <ChartBarIcon className="sidebarIcon" />
+          <Link href="/playlist">
+            <ChartBarIcon className={"sidebarIcon" + " " + ((light === 5) ? "text-white" : "")} />
+          </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Playlist
           </span>
         </div>
         <div className="group">
-          <DotsHorizontalIcon className="sidebarIcon" />
+          <DotsHorizontalIcon className={"sidebarIcon" + " " + ((light === 6) ? "text-white" : "")} />
           <span className="sidebarTooltip group-hover:scale-100">
             More
           </span>

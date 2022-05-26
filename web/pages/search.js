@@ -4,26 +4,25 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Body from '../components/Body';
 import Dropdown from '../components/Dropdown';
+import Search from '../components/Search';
 import Sidebar from '../components/Sidebar';
 
-export default function Home() {
+function search() {
   const router = useRouter();
   const [songs, setSongs] = useState([]);
+  const [search, setSearch] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const { status, data: session } = useSession({
+  const { status } = useSession({
     required: true,
     onUnauthenticated() {
       router.push("http://localhost:3000/auth/signin");
     }
   });
 
-  // console.log(session?.user?.email);
-
   useEffect(() => {
-    setLoading(true);
-    const fetchSongs = async () => {
-      const response = await fetch("/api/popular", {
+    const fetchResults = async () => {
+      const response = await fetch("/api/search?_query=" + search, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -35,30 +34,35 @@ export default function Home() {
       }
     };
 
-    fetchSongs();
-    setLoading(false);
-  }, []);
+    fetchResults();
+  }, [search]);
 
-  if (isLoading) return <p className="text-white">Loading...</p>;
-  if(!songs) return <p className="text-white">Some error occured.</p>
+  // if (!songs) return <p className='text-white'>Erorr...</p>;
+
 
   return (
     <div className="">
       <Head>
-        <title>Musify</title>
+        <title>Musify - Search songs</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
-        <Sidebar light={0} />
+        <Sidebar light={1} />
+
+        <div className='ml-24'>
+          <Search search={search} setSearch={setSearch} />
+        </div>
         <Body songs={songs} />
         <div className="mx-[20%]">
           <Dropdown />
         </div>
       </main> 
+
     </div>
-  );
+  )
 }
 
+export default search;
 
 export async function getServerSideProps(context) {
   // Check if the user is authenticated on the server...
