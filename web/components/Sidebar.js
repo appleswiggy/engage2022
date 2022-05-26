@@ -1,13 +1,9 @@
 import {
-  ChartBarIcon,
-  ClockIcon,
-  DotsHorizontalIcon,
-  SearchIcon,
-  HomeIcon,
-  HeartIcon,
-  CollectionIcon
+  ChartBarIcon, ClockIcon, DotsHorizontalIcon,
+  SearchIcon, HomeIcon, HeartIcon, CollectionIcon
 } from "@heroicons/react/solid";
 import Image from "next/image"
+import Link from "next/link";
 
 function Sidebar() {
   return (
@@ -20,7 +16,9 @@ function Sidebar() {
       />
       <div className="flex flex-col space-y-8">
         <div className="group">
-          <HomeIcon className="sidebarIcon" />
+          <Link href="/">
+            <HomeIcon className="sidebarIcon" />
+          </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Home
           </span>

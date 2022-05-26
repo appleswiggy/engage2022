@@ -83,7 +83,7 @@ def recommend_songs_from_multiple(song_list, n_songs=10, isPlaylist=False):
 
     rec_songs = rec_songs[:n_songs]
 
-    return list(rec_songs["id"])
+    return rec_songs[["id", "name", "artists", "img"]].to_dict(orient="records")
 
 
 def recommend_songs_from_single(song_id, n_songs=10):
@@ -103,4 +103,4 @@ def recommend_songs_from_single(song_id, n_songs=10):
 
     rec_songs = data.iloc[index][1:]
 
-    return list(rec_songs["id"])
+    return rec_songs[["id", "name", "artists", "img"]].to_dict(orient="records")
