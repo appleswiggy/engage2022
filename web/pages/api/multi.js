@@ -7,10 +7,10 @@ export default async function handler(req, res) {
         return updateRecentlyPlayed(req, res);
     }
     if (req.method == 'GET') {
-        if (!req.query._recommend) {
-            return getRecents(req, res);
+        if (req.query._recommend) {
+            return getRecommendations(req, res);
         }
-        return getRecommendations(req, res);
+        return getRecents(req, res);
     }
 }
 
@@ -107,7 +107,7 @@ async function getRecents(req, res) {
 async function getRecommendations(req, res) {
     try {
         let songIds = await getRecentIds(req, res);
-        const songs = await axios.post('/multi', {track_ids: songIds})
+        const songs = await axios.post('/multi', {track_ids: songIds, n_songs: req.query._n_songs})
 
         return res.json({
             message: JSON.parse(JSON.stringify(songs['data'])),

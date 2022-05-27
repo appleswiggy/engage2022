@@ -2,6 +2,19 @@ import Link from "next/link";
 import { BsFillPlayFill } from "react-icons/bs";
 
 function Poster({ id, title, artist, img }) {
+
+  let str_artists;
+  try {
+    str_artists = artist
+      .slice(2, -2)
+      .replaceAll('\', \'', ', ')
+      .replaceAll('", "', ', ')
+      .replaceAll('", \'', ', ')
+      .replaceAll('\', "', ', ');
+  } catch (error) {
+    str_artists = artist;
+  }
+
   return (
     <Link href={{ pathname: 'http://localhost:3000/songs', query: { _id: id } }}>
     <div
@@ -20,7 +33,7 @@ function Poster({ id, title, artist, img }) {
 
         <div className="text-[15px] text-gray-100">
           <h4 className="font-extrabold truncate w-44">{title}</h4>
-          <h6>{artist}</h6>
+          <h6>{str_artists}</h6>
         </div>
       </div>
     </div>

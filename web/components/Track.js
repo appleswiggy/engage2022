@@ -6,6 +6,19 @@ import Link from "next/link";
 
 function Track({ id, title, artist, img }) {
   const [hasLiked, setHasLiked] = useState(false);
+
+  let str_artists;
+  try {
+    str_artists = artist
+      .slice(2, -2)
+      .replaceAll('\', \'', ', ')
+      .replaceAll('", "', ', ')
+      .replaceAll('", \'', ', ')
+      .replaceAll('\', "', ', ');
+  } catch (error) {
+    str_artists = artist;
+  }
+
   return (
     <div className="flex items-center justify-between space-x-20 cursor-default hover:bg-white/10 py-2 px-4 rounded-lg group transition ease-out">
       <div className="flex items-center">
@@ -19,22 +32,17 @@ function Track({ id, title, artist, img }) {
             {title}
           </h4>
           <p className="text-[rgb(179,179,179)] text-[13px] font-semibold group-hover:text-white">
-            {artist}
+            {str_artists}
           </p>
         </div>
       </div>
 
       <div className="md:ml-auto flex items-center space-x-2.5">
         <div className="text-white flex space-x-1 text-sm font-semibold">
-          <ImHeadphones className="text-lg" />
+          {/* <ImHeadphones className="text-lg" /> */}
         </div>
         <div className="flex items-center rounded-full border-2 border-gray-700 w-[85px] h-10 relative cursor-pointer group-hover:border-white/40">
-          <AiFillHeart
-            className={`text-xl ml-3 icon ${
-              hasLiked ? "text-[#1ED760]" : "text-[#868686]"
-            }`}
-            onClick={() => setHasLiked(!hasLiked)}
-          />
+          <ImHeadphones className="text-lg ml-3 icon text-white" />
           <>
           <Link href={{ pathname: 'http://localhost:3000/songs', query: { _id: id } }}>
             <div className="h-10 w-10 rounded-full border border-white/60 flex items-center justify-center absolute -right-0.5 hover:bg-[#15883e] hover:border-[#15883e] icon hover:scale-110">

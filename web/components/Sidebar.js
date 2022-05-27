@@ -1,6 +1,6 @@
 import {
   ChartBarIcon, ClockIcon, DotsHorizontalIcon,
-  SearchIcon, HomeIcon, HeartIcon, CollectionIcon
+  SearchIcon, HomeIcon, CollectionIcon
 } from "@heroicons/react/solid";
 import Image from "next/image"
 import Link from "next/link";
@@ -9,7 +9,7 @@ function Sidebar( {light} ) {
   return (
     <section className="fixed top-0 z-40 flex flex-col p-4 items-center shadow-lg bg-gray-900 w-[70px] h-screen space-y-8">
       <Image
-        src="https://rb.gy/xkacau"
+        src="https://media.discordapp.net/attachments/898544585167482891/900083852658225172/image0.png"
         width={56}
         height={56}
         objectFit="contain"
@@ -29,14 +29,6 @@ function Sidebar( {light} ) {
           </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             Search
-          </span>
-        </div>
-        <div className="group">
-          <Link href="/liked">
-            <HeartIcon className={"sidebarIcon" + " " + ((light === 2) ? "text-white" : "")} />
-          </Link>   
-          <span className="sidebarTooltip group-hover:scale-100">
-            Liked songs
           </span>
         </div>
         <div className="group">

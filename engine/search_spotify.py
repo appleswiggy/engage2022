@@ -39,3 +39,15 @@ def find_song(song_id):
         song_data[key] = value
 
     return pd.DataFrame(song_data)
+
+
+def tracks_from_playlist(playlist_link):
+    URI = playlist_link.split("/")[-1].split("?")[0]
+
+    try:
+        track_ids = []
+        for track in sp.playlist_tracks(URI)["items"]:
+            track_ids.append(track["track"]["id"])
+        return track_ids
+    except:
+        return []

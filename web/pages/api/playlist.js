@@ -5,19 +5,15 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 export default async function handler(req, res) {
-    return getRecommendations(req, res);
-}
-
-async function getRecommendations(req, res) {
     try {
-        const songs = await axios.post('/single', {track_id: req.query._id, n_songs: req.query._n_songs})
+        const songs = await axios.post('/playlist', {playlist_link: req.query._link, n_songs: req.query._n_songs})
         return res.json({
             message: JSON.parse(JSON.stringify(songs['data'])),
             success: true,
         });
 
     } catch (error) {
-        console.log("popular.js: " + error);
+        console.log(error);
         return res.json({
             message: new Error(error).message,
             success: false,

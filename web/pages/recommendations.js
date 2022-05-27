@@ -20,7 +20,7 @@ function recommendations() {
 
   useEffect(() => {
     const fetchSongs = async () => {
-      const response = await fetch("/api/multi?_recommend=true&_email=" + session?.user?.email, {
+      const response = await fetch("/api/multi?_recommend=true&_n_songs=10&_email=" + session?.user?.email, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

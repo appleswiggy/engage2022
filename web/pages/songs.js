@@ -28,7 +28,7 @@ function songs() {
 
 useEffect(() => {
     const fetchSongs = async () => {
-      const response = await fetch("/api/single?_id=" + router.query._id, {
+      const response = await fetch("/api/single?_n_songs=10&_id=" + router.query._id, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -64,7 +64,6 @@ useEffect(() => {
         <div className="ml-24">
             <iframe className="rounded-[12px] m-[20px] w-[500px] h-[580px]" src={"https://open.spotify.com/embed/track/" +
             router.query._id + "?utm_source=generator"} frameBorder="0"></iframe>
-            <button className="btn first">Like</button>
         </div>
         <Body songs={songs} />
         <div className="mx-[20%]">
