@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Body from '../components/Body';
-import Dropdown from '../components/Dropdown';
+import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
 function playlist() {
@@ -43,24 +43,22 @@ function playlist() {
       </Head>
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={5} />
+        <Header text={" Songs similar to your playlist "} />
 
-        <div className='ml-24'>
+        <div className='ml-24 mt-5'>
           <form onSubmit={(e) => {e.preventDefault(); fetchSongs();}}>
-            <label for="playlist_link">Playlist Link:</label>
+            <label for="playlist_link" className='text-white'>Playlist Link:</label>
             <input 
               type="text" 
               id="playlist_link" 
               name="playlist_link"
               onChange={(e) => setLink(e.target.value)}
               />
-            <button type="submit">Submit</button>
+            <button type="submit" className='text-white'>Submit</button>
           </form>
         </div>
         {isLoading && (<p className='ml-24 text-white'>Loading ...</p>)}
         {(!isLoading && songs.length != 0) && (<Body songs={songs} />)}
-        <div className="mx-[20%]">
-          <Dropdown />
-        </div>
       </main> 
 
     </div>

@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Body from '../components/Body';
-import Dropdown from '../components/Dropdown';
 import Search from '../components/Search';
 import Sidebar from '../components/Sidebar';
 
@@ -53,9 +52,7 @@ function search() {
           <Search search={search} setSearch={setSearch} />
         </div>
         <Body songs={songs} />
-        <div className="mx-[20%]">
-          <Dropdown />
-        </div>
+
       </main> 
 
     </div>

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Body from '../components/Body';
-import Dropdown from '../components/Dropdown';
+import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
 function recents() {
@@ -43,12 +43,9 @@ function recents() {
       </Head>
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={3} />
+        <Header text={" Recently played "} />
         <Body songs={songs} />
-        <div className="mx-[20%]">
-          <Dropdown />
-        </div>
       </main> 
-
     </div>
   )
 }

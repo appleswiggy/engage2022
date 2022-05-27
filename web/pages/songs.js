@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Body from "../components/Body";
-import Dropdown from "../components/Dropdown";
 import Sidebar from "../components/Sidebar";
 
 function songs() {
@@ -66,9 +65,6 @@ useEffect(() => {
             router.query._id + "?utm_source=generator"} frameBorder="0"></iframe>
         </div>
         <Body songs={songs} />
-        <div className="mx-[20%]">
-          <Dropdown />
-        </div>
       </main> 
     </div>
   )

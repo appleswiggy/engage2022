@@ -36,7 +36,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      body: ["Anadada Pro", "serif"],
+      body: ["DM Mono", "serif"],
       sans: ["ui-sans-serif", "system-ui"],
     },
   },
