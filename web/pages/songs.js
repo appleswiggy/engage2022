@@ -9,9 +9,8 @@ import Sidebar from "../components/Sidebar";
 function songs() {
   const router = useRouter();
   const [songs, setSongs] = useState([]);
-  const [isLoading, setLoading] = useState(false);
 
-  const { status } = useSession({
+  const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
       router.push("http://localhost:3000/auth/signin");
@@ -28,7 +27,6 @@ function songs() {
   }
 
 useEffect(() => {
-    setLoading(true);
     const fetchSongs = async () => {
       const response = await fetch("/api/single?_id=" + router.query._id, {
         method: "GET",
@@ -43,10 +41,16 @@ useEffect(() => {
     };
 
     fetchSongs();
-    setLoading(false);
+    
+    const data = JSON.stringify({email: session?.user?.email, id: router.query._id});
+    if (data) {
+      fetch('/api/multi', {
+                method: 'PUT',
+                body: data,
+            });
+    }
   }, [router.query._id]);
 
-  if (isLoading) return <p className="text-white">Loading...</p>;
   if(!songs) return <p className="text-white">Some error occured.</p>
 
   return (

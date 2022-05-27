@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const { connectToDatabase } = require('../../util/mongodb');
-const ObjectId = require('mongodb').ObjectId;
 
 export default async function handler(req, res) {
     return getPopularSongs(req, res);

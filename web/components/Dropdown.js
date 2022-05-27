@@ -37,7 +37,7 @@ export default function Dropdown() {
                       active && "bg-white/10"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm font-semibold tracking-wide text-white cursor-default`}
                     // onClick="location.href='/api/auth/logout'"
-                    onClick={signOut}
+                    onClick={() => signOut({ redirect: false })}
                   >
                     <LogoutIcon className="w-5 h-5 mr-2" aria-hidden="true" />
                     Log out

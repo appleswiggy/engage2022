@@ -11,13 +11,29 @@ function recommendations() {
   const [songs, setSongs] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
-  const { status } = useSession({
+  const { status, data:session } = useSession({
     required: true,
     onUnauthenticated() {
       router.push("http://localhost:3000/auth/signin");
     }
   });
 
+  useEffect(() => {
+    const fetchSongs = async () => {
+      const response = await fetch("/api/multi?_recommend=true&_email=" + session?.user?.email, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const responseData = await response.json();
+
+      if (responseData['success']) {
+        setSongs(responseData['message']);
+      }
+    };
+
+    fetchSongs();
+  }, []);
 
   return (
     <div className="">
@@ -27,7 +43,7 @@ function recommendations() {
       </Head>
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={4} />
-        {/* <Body songs={songs} /> */}
+        <Body songs={songs} />
         <div className="mx-[20%]">
           <Dropdown />
         </div>
