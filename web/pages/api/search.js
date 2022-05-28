@@ -1,7 +1,17 @@
+import { getSession } from 'next-auth/react';
+
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const { connectToDatabase } = require('../../util/mongodb');
 
 export default async function handler(req, res) {
+    const session = await getSession({ req });
+
+    if (!session) {
+        res.status(401);
+        res.end()
+        return;
+    }
+    
     return searchSongs(req, res);
 }
 
@@ -42,8 +52,6 @@ async function searchSongs(req, res) {
                     },
                 ]).toArray();
 
-                // console.log(results);
-
                 return res.json({
                     message: JSON.parse(JSON.stringify(results)),
                     success: true,
@@ -56,7 +64,7 @@ async function searchSongs(req, res) {
         });
 
     } catch (error) {
-        console.log("popular.js: " + error);
+        console.log(error);
         return res.json({
             message: new Error(error).message,
             success: false,

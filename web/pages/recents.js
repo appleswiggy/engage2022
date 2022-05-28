@@ -25,7 +25,7 @@ function recents() {
     setLoading(true);
 
     const fetchSongs = async () => {
-      const response = await fetch("/api/multi?_email=" + session?.user?.email, {
+      const response = await fetch("/api/multi", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

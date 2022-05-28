@@ -42,7 +42,7 @@ useEffect(() => {
         setSongs(responseData['message']);
 
         // add the current song to recently played songs.
-        const data = JSON.stringify({email: session?.user?.email, id: router.query._id});
+        const data = JSON.stringify({id: router.query._id});
         if (data) {
           fetch('/api/multi', {
                     method: 'PUT',
