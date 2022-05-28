@@ -1,3 +1,10 @@
+"""
+    This flask API is used as a means of communication between
+    recommendation engine written in Python with Javascript on
+    the backend. The JS backend calls this API to get songs to
+    recommend to the users based on their request.
+"""
+
 from urllib import request
 from flask import Flask
 from flask import request, jsonify
@@ -10,7 +17,7 @@ from engine import (
 
 app = Flask(__name__)
 
-
+# Returns songs similar to the provided songs.
 @app.route("/single", methods=["POST"])
 def single():
     id = str(request.get_json().get("track_id"))
@@ -20,6 +27,7 @@ def single():
     return jsonify(songs)
 
 
+# Returns songs similar to the list of provided songs.
 @app.route("/multi", methods=["POST"])
 def multiple():
     ids = request.get_json().get("track_ids")
@@ -29,6 +37,7 @@ def multiple():
     return jsonify(songs)
 
 
+# Returns songs similar to the songs in the provided playlist.
 @app.route("/playlist", methods=["POST"])
 def playlist():
     playlist_link = str(request.get_json().get("playlist_link"))
@@ -39,4 +48,4 @@ def playlist():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(port=5000)

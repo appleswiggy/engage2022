@@ -16,6 +16,16 @@ sp = spotipy.Spotify(
 
 
 def find_song(song_id):
+    """Finds song's details and features using Spotify API.
+
+    Parameters:
+        song_id (str): Spotify track ID.
+
+    Returns:
+        song_data (pandas dataframe): Song data including name, id, year, duration,
+                                      popularity and audio features.
+    """
+
     song_data = defaultdict()
     try:
         result = sp.track(song_id)
@@ -42,6 +52,14 @@ def find_song(song_id):
 
 
 def tracks_from_playlist(playlist_link):
+    """Gets Spotify track IDs of the songs in the playlist.
+
+    Parameters:
+        playlist_link (str): Spotify playlist link
+
+    Returns:
+        track_ids (list): List of Spotify track IDs.
+    """
     URI = playlist_link.split("/")[-1].split("?")[0]
 
     try:
