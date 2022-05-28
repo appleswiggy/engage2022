@@ -1,7 +1,7 @@
 import { getSession, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Body from '../components/Body';
 import Empty from '../components/Empty';
 import Header from '../components/Header';
@@ -14,6 +14,8 @@ function playlist() {
   const [isLoading, setLoading] = useState(false);
   const [link, setLink] = useState("");
 
+  // Redirect to signin page if session expires or if the 
+  // user is unauthenticated.
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
@@ -23,7 +25,8 @@ function playlist() {
 
   const fetchSongs = async () => {
     setLoading(true);
-    const response = await fetch("/api/playlist?_n_songs=10&_link=" + link, {
+
+    const response = await fetch("/api/playlist?_n_songs=20&_link=" + link, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -31,9 +34,9 @@ function playlist() {
     const responseData = await response.json();
 
     if (responseData['success']) {
-      console.log(responseData['message'])
       setSongs(responseData['message']);
     }
+
     setLoading(false);
   };
 
@@ -43,6 +46,7 @@ function playlist() {
         <title>Musify - Find similar songs</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={5} />
         <Header text={" Songs similar to your playlist "} />
@@ -51,6 +55,7 @@ function playlist() {
           <form onSubmit={(e) => {e.preventDefault(); fetchSongs();}}>
                 <div class="form__body">
                   <div class="form__group field">
+
                     <input
                       type="input"
                       class="form__field"
@@ -59,6 +64,7 @@ function playlist() {
                       placeholder="Playlist Link"
                     />
                     <label for="playlist_link" class="form__label">Playlist Link</label>
+
                   </div>
                 </div>
                 <br/>

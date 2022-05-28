@@ -5,7 +5,8 @@ import Image from 'next/image';
 
 export default function signin({ providers }) {
   return (
-    <div className="bg-gray-100 h-screen flex flex-col items-center pt-40 space-y-4">
+    <div className="bg-gray-100 h-screen flex flex-col 
+                    items-center pt-40 space-y-4">
       <Head>
         <title>Musify</title>
         <link rel="icon" href="/favicon.ico" />
@@ -21,6 +22,7 @@ export default function signin({ providers }) {
       {Object.values(providers).map((provider) => (
             <div key={provider.name}>
               <div className="pl-4">
+                
                 <button
                   className="login-with-google-btn"
                   onClick={() => signIn(provider.id, { callbackUrl: "http://localhost:3000/" })}

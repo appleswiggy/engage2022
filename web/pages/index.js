@@ -12,17 +12,18 @@ export default function Home() {
   const [songs, setSongs] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
-  const { status, data: session } = useSession({
+  // Redirect to signin page if session expires or if the 
+  // user is unauthenticated.
+  const { status } = useSession({
     required: true,
     onUnauthenticated() {
       router.push("http://localhost:3000/auth/signin");
     }
   });
 
-  // console.log(session?.user?.email);
-
   useEffect(() => {
     setLoading(true);
+
     const fetchSongs = async () => {
       const response = await fetch("/api/popular", {
         method: "GET",
@@ -35,8 +36,8 @@ export default function Home() {
         setSongs(responseData['message']);
       }
     };
-
     fetchSongs();
+
     setLoading(false);
   }, []);
 
@@ -46,6 +47,7 @@ export default function Home() {
         <title>Musify</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={0} />
         <Header text={" Popular songs "} />

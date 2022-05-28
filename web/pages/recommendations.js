@@ -12,6 +12,8 @@ function recommendations() {
   const [songs, setSongs] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
+  // Redirect to signin page if session expires or if the 
+  // user is unauthenticated.
   const { status, data:session } = useSession({
     required: true,
     onUnauthenticated() {
@@ -21,6 +23,7 @@ function recommendations() {
 
   useEffect(() => {
     setLoading(true);
+
     const fetchSongs = async () => {
       const response = await fetch("/api/multi?_recommend=true&_n_songs=10&_email=" + session?.user?.email, {
         method: "GET",
@@ -33,8 +36,8 @@ function recommendations() {
         setSongs(responseData['message']);
       }
     };
-
     fetchSongs();
+
     setLoading(false);
   }, []);
 
@@ -44,6 +47,7 @@ function recommendations() {
         <title>Musify - Recommended songs</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={4} />
         <Header text={" Recommendations "} />
