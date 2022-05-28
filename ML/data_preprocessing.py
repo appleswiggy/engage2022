@@ -1,3 +1,14 @@
+"""
+    This code is used to get the image URLs of all the songs in 
+    the data.csv file from the Spotify API and store them in 
+    data_w_img.csv file.
+
+    This is done to provide faster access to users while serving
+    them in frontend. Since, image is already in the dataset and need 
+    not be fetched every time from the Spotify API, response time is
+    greatly reduced.
+"""
+
 import os
 import pandas as pd
 import threading
@@ -39,15 +50,14 @@ def thread_function(id, start, end):
 
 
 length = len(df)
-size = length // 10
+size = length // 10  # Divide the workload to 10 threads
 
-# Create 10 threads to distribute the workload.
 thread1 = threading.Thread(
     target=thread_function,
     args=(
-        1,
-        0,
-        size,
+        1,  # thread ID
+        0,  # start index
+        size,  # end index
     ),
 )
 thread2 = threading.Thread(
