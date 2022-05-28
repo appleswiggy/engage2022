@@ -23,7 +23,7 @@ function Poster({ id, title, artist, img }) {
           <h2 className="truncate w-[250px]">{title}</h2>
           <img
             src={img}
-            className="absolute bottom-0 left-0 rounded-[16px] opacity-80 group-hover:opacity-100"
+            className="absolute bottom-0 left-0 rounded-[16px]"
           />
         </header>
       </article>

@@ -3,7 +3,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Body from '../components/Body';
+import Empty from '../components/Empty';
 import Header from '../components/Header';
+import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
 
 function playlist() {
@@ -45,20 +47,40 @@ function playlist() {
         <Sidebar light={5} />
         <Header text={" Songs similar to your playlist "} />
 
-        <div className='ml-24 mt-5'>
+        <div className='ml-36 mt-5'>
           <form onSubmit={(e) => {e.preventDefault(); fetchSongs();}}>
-            <label for="playlist_link" className='text-white'>Playlist Link:</label>
-            <input 
-              type="text" 
-              id="playlist_link" 
-              name="playlist_link"
-              onChange={(e) => setLink(e.target.value)}
-              />
-            <button type="submit" className='text-white'>Submit</button>
+                <div class="form__body">
+                  <div class="form__group field">
+                    <input
+                      type="input"
+                      class="form__field"
+                      onChange={(e) => setLink(e.target.value)}
+                      name="playlist_link"
+                      placeholder="Playlist Link"
+                    />
+                    <label for="playlist_link" class="form__label">Playlist Link</label>
+                  </div>
+                </div>
+                <br/>
+              <button type="submit" className='text-white bg-[#2196F3] mn-button raised'>Submit</button>
           </form>
         </div>
-        {isLoading && (<p className='ml-24 text-white'>Loading ...</p>)}
-        {(!isLoading && songs.length != 0) && (<Body songs={songs} />)}
+
+        {isLoading && (
+          <div className='flex flex-col items-center mt-[10%]'>
+            <Loader/>
+          </div>
+          )}
+
+        {(!isLoading && songs.length != 0) && (
+          <div className='flex flex-col items-center'>
+            <Body songs={songs} />
+          </div>)}
+
+        {(!isLoading && songs.length == 0) && (
+          <div className='flex flex-col items-center mt-[5%] '>
+            <Empty />
+          </div>)}
       </main> 
 
     </div>

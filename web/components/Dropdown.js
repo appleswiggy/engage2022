@@ -35,7 +35,7 @@ export default function Dropdown() {
                   <button
                     className={`${
                       active && "bg-white/10"
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm font-semibold tracking-wide text-white cursor-default`}
+                    } group flex rounded-md items-center w-full px-2 py-2 text-md font-semibold tracking-wide text-white cursor-default`}
                     // onClick="location.href='/api/auth/logout'"
                     onClick={() => signOut({ redirect: false })}
                   >

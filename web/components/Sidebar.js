@@ -56,7 +56,9 @@ function Sidebar( {light} ) {
           </span>
         </div>
         <div className="group">
-          <DotsHorizontalIcon className={"sidebarIcon" + " " + ((light === 6) ? "text-white" : "")} />
+          <Link href={"https://github.com/appleswiggy"}>
+            <DotsHorizontalIcon className={"sidebarIcon" + " " + ((light === 6) ? "text-white" : "")} />
+          </Link>
           <span className="sidebarTooltip group-hover:scale-100">
             More
           </span>

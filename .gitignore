@@ -1,7 +1,6 @@
 __pycache__
 .env
 engine/__pycache__/
-data/
 engine/.cache
 html.py
 .vscode/

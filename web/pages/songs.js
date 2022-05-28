@@ -3,7 +3,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Body from "../components/Body";
+import Poster from "../components/Poster";
 import Sidebar from "../components/Sidebar";
+import Track from "../components/Track";
 
 function songs() {
   const router = useRouter();
@@ -60,11 +62,37 @@ useEffect(() => {
       </Head>
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar />
-        <div className="ml-24">
-            <iframe className="rounded-[12px] m-[20px] w-[500px] h-[580px]" src={"https://open.spotify.com/embed/track/" +
+        <div className="ml-24 mt-12 flex flex-row items-center justify-between">
+            <iframe className="rounded-[12px] ml-10 w-[500px] h-[580px]" src={"https://open.spotify.com/embed/track/" +
             router.query._id + "?utm_source=generator"} frameBorder="0"></iframe>
+
+            {(songs.length != 0) && (
+              <div className="flex gap-x-8 mr-10 w-[700px] absolute right-10 md:relative ml-6">
+                <div className="pr-11">
+                  <h2 className="text-white font-bold mb-3 text-2xl">
+                    You might also like ...
+                  </h2>
+                  {/* <div className="space-y-3 border-2 border-gray-700 rounded-2xl p-3 bg-gray-900 overflow-y-scroll h-[1000px] md:h-96 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-thumb-rounded hover:scrollbar-thumb-gray-500 w-[830px]"> */}
+                  <div className="overflow-y-scroll h-[600px] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-thumb-rounded hover:scrollbar-thumb-gray-500 w-[720px]">
+                    {songs
+                        .slice(0, songs.length)
+                        .map((track) => (
+                        <Track
+                            key={track['id']}
+                            id={track['id']}
+                            title={track['name']}
+                            artist={track['artists']}
+                            img={track['img']}
+                        />
+                        ))
+                    }
+                  </div>
+                  {/* </div> */}
+                </div>
+              </div>
+            )}
+            
         </div>
-        <Body songs={songs} />
       </main> 
     </div>
   )

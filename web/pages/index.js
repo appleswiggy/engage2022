@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Body from '../components/Body';
+import Empty from '../components/Empty';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
@@ -39,9 +40,6 @@ export default function Home() {
     setLoading(false);
   }, []);
 
-  if (isLoading) return <p className="text-white">Loading...</p>;
-  if(!songs) return <p className="text-white">Some error occured.</p>
-
   return (
     <div className="">
       <Head>
@@ -51,7 +49,23 @@ export default function Home() {
       <main className="min-h-screen min-w-max bg-gray-800 lg:pb-24">
         <Sidebar light={0} />
         <Header text={" Popular songs "} />
-        <Body songs={songs} />
+
+        {isLoading && (
+          <div className='flex flex-col items-center mt-[10%]'>
+            <Loader/>
+          </div>
+          )}
+
+        {(!isLoading && songs.length != 0) && (
+          <div className='flex flex-col items-center'>
+            <Body songs={songs} />
+          </div>)}
+
+        {(!isLoading && songs.length == 0) && (
+          <div className='flex flex-col items-center mt-[5%]'>
+            <Empty />
+          </div>)}
+
       </main> 
     </div>
   );

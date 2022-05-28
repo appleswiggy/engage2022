@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function middleware(req) {
   const path = req.nextUrl.pathname;
-  if (path === "/" || path === "/songs") {
+  const paths = ['/', '/songs', '/index', '/playlist', '/recents', '/recommendations', '/search'];
+  if (paths.includes(path)) {
     const session = await getToken({
       req,
       secret: process.env.JWT_SECRET,
