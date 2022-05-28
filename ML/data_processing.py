@@ -4,11 +4,11 @@ import threading
 import spotipy
 from dotenv import load_dotenv
 from datetime import datetime
-from engine import recommend_songs_from_single
 from spotipy.oauth2 import SpotifyClientCredentials
 
-load_dotenv()
 
+# loads env variables from .env
+load_dotenv()
 
 sp = spotipy.Spotify(
     auth_manager=SpotifyClientCredentials(
@@ -21,6 +21,13 @@ df = pd.read_csv("../data/data.csv")
 
 
 def thread_function(id, start, end):
+    """Gets the images of the tracks using SPOTIFY API
+
+    Parameters:
+        id (int): Thread ID
+        start (int): Index value to start from.
+        end (int): Index value to end at.
+    """
     for i in range(start, end):
         try:
             track = sp.track(df.loc[i, "id"])
@@ -34,6 +41,7 @@ def thread_function(id, start, end):
 length = len(df)
 size = length // 10
 
+# Create 10 threads to distribute the workload.
 thread1 = threading.Thread(
     target=thread_function,
     args=(
@@ -130,6 +138,7 @@ thread8.start()
 thread9.start()
 thread10.start()
 
+# Wait for each thread to finish.
 thread1.join()
 thread2.join()
 thread3.join()
