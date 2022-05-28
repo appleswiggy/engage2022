@@ -13,7 +13,6 @@ function Empty() {
                     <span></span>
                     <span></span>
                     <span></span>
-
                 </div>
             </div>
             <p>Nothing to display</p>

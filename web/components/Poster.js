@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { BsFillPlayFill } from "react-icons/bs";
 
 function Poster({ id, title, artist, img }) {
 
   let str_artists;
   try {
+    // artist is a string of the form "['artist1', 'artist2']"
+    // Converting them to the string of the form "artist1, artist2"
     str_artists = artist
       .slice(2, -2)
       .replaceAll('\', \'', ', ')

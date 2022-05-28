@@ -15,6 +15,7 @@ function Sidebar( {light} ) {
         objectFit="contain"
       />
       <div className="flex flex-col space-y-8">
+
         <div className="group">
           <Link href="/">
             <HomeIcon className={"sidebarIcon" + " " + ((light === 0) ? "text-white" : "")} />
@@ -23,6 +24,7 @@ function Sidebar( {light} ) {
             Home
           </span>
         </div>
+
         <div className="group">
           <Link href="/search">
             <SearchIcon className={"sidebarIcon" + " " + ((light === 1) ? "text-white" : "")} />
@@ -31,6 +33,7 @@ function Sidebar( {light} ) {
             Search
           </span>
         </div>
+
         <div className="group">
           <Link href="/recents">
             <ClockIcon className={"sidebarIcon" + " " + ((light === 3) ? "text-white" : "")} />
@@ -39,6 +42,7 @@ function Sidebar( {light} ) {
             Recently Played
           </span>
         </div>
+
         <div className="group">
           <Link href="/recommendations">
             <CollectionIcon className={"sidebarIcon" + " " + ((light === 4) ? "text-white" : "")} />
@@ -47,6 +51,7 @@ function Sidebar( {light} ) {
             Explore
           </span>
         </div>
+
         <div className="group">
           <Link href="/playlist">
             <ChartBarIcon className={"sidebarIcon" + " " + ((light === 5) ? "text-white" : "")} />
@@ -55,6 +60,7 @@ function Sidebar( {light} ) {
             Playlist
           </span>
         </div>
+
         <div className="group">
           <Link href={"https://github.com/appleswiggy"}>
             <DotsHorizontalIcon className={"sidebarIcon" + " " + ((light === 6) ? "text-white" : "")} />
@@ -63,6 +69,7 @@ function Sidebar( {light} ) {
             More
           </span>
         </div>
+        
       </div>
     </section>
   )

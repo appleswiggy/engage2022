@@ -1,7 +1,4 @@
 function Search({ search, setSearch }) {
-  const InputProps = {
-    step: 300,
-  };
   return (
     <div class="form__body">
       <div class="form__group field">
