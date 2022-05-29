@@ -118,7 +118,7 @@ def recommend_songs_from_multiple(song_list, n_songs=10, isPlaylist=False):
     distances = cdist(scaled_song_center, scaled_data, "cosine")
 
     # Sort the distances to find the top (n*2) similar songs
-    index = list(np.argsort(distances)[:, : n_songs * 2][0])
+    index = list(np.argsort(distances, kind="quicksort")[:, : n_songs * 2][0])
     rec_songs = data.iloc[index]
 
     if isPlaylist:
@@ -156,7 +156,7 @@ def recommend_songs_from_single(song_id, n_songs=10):
     distances = cdist(scaled_song_vector, scaled_data, "cosine")
 
     # Sort the distances to find the top (n+1) similar songs
-    index = list(np.argsort(distances)[:, : n_songs + 1][0])
+    index = list(np.argsort(distances, kind="quicksort")[:, : n_songs + 1][0])
 
     # Return last n songs as the first song
     # will be same as the one provided.
