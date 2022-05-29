@@ -2,6 +2,7 @@ import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Empty from "../components/Empty";
 import Sidebar from "../components/Sidebar";
 import Track from "../components/Track";
 
@@ -12,7 +13,7 @@ function songs() {
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("http://localhost:3000/auth/signin");
+      router.push("/auth/signin");
     }
   });
 
@@ -22,7 +23,7 @@ function songs() {
             <p>Invalid request.</p>
             <a 
               className="text-[#0000FF]" 
-              href={"http://localhost:3000/"}>
+              href={"/"}>
                 Click here to go to Home page.
             </a>
         </div>

@@ -24,6 +24,7 @@ function Poster({ id, title, artist, img }) {
           <h2 className="truncate w-[250px]">{title}</h2>
           <img
             src={img}
+            alt=""
             className="absolute bottom-0 left-0 rounded-[16px]"
           />
         </header>

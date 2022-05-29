@@ -12,6 +12,7 @@ function Sidebar( {light} ) {
         src="https://media.discordapp.net/attachments/898544585167482891/900083852658225172/image0.png"
         width={56}
         height={56}
+        alt=""
         objectFit="contain"
       />
       <div className="flex flex-col space-y-8">

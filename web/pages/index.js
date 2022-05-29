@@ -18,7 +18,7 @@ export default function Home() {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("http://localhost:3000/auth/signin");
+      router.push("/auth/signin");
     }
   });
 

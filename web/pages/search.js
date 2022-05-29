@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Empty from '../components/Empty';
+import Loader from '../components/Loader';
 import Search from '../components/Searchbar';
 import Sidebar from '../components/Sidebar';
 import Track from '../components/Track';
@@ -18,7 +19,7 @@ function search() {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("http://localhost:3000/auth/signin");
+      router.push("/auth/signin");
     }
   });
 

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Body from '../components/Body';
 import Empty from '../components/Empty';
 import Header from '../components/Header';
+import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
 
 function recents() {
@@ -17,7 +18,7 @@ function recents() {
   const { status, data:session } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("http://localhost:3000/auth/signin");
+      router.push("/auth/signin");
     }
   });
 

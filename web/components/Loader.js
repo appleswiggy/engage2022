@@ -1,6 +1,6 @@
 function Loader() {
   return (
-    <div class="loader">
+    <div className="loader">
     <div>
         <ul>
         <li>

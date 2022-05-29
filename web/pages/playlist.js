@@ -19,7 +19,7 @@ function playlist() {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("http://localhost:3000/auth/signin");
+      router.push("/auth/signin");
     }
   });
 
@@ -53,17 +53,17 @@ function playlist() {
 
         <div className='ml-36 mt-5'>
           <form onSubmit={(e) => {e.preventDefault(); fetchSongs();}}>
-                <div class="form__body">
-                  <div class="form__group field">
+                <div className="form__body">
+                  <div className="form__group field">
 
                     <input
                       type="input"
-                      class="form__field"
+                      className="form__field"
                       onChange={(e) => setLink(e.target.value)}
                       name="playlist_link"
                       placeholder="Playlist Link"
                     />
-                    <label for="playlist_link" class="form__label">Playlist Link</label>
+                    <label className="form__label">Playlist Link</label>
 
                   </div>
                 </div>

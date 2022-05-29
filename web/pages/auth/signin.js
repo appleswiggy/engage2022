@@ -17,6 +17,7 @@ export default function signin({ providers }) {
         width={250}
         height={250}
         objectFit="contain"
+        alt=''
       />
 
       {Object.values(providers).map((provider) => (
@@ -25,7 +26,7 @@ export default function signin({ providers }) {
                 
                 <button
                   className="login-with-google-btn"
-                  onClick={() => signIn(provider.id, { callbackUrl: "http://localhost:3000/" })}
+                  onClick={() => signIn(provider.id, { callbackUrl: "/" })}
                 >
                   Sign in with Google
                 </button>
