@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Body from '../components/Body';
 import Empty from '../components/Empty';
 import Header from '../components/Header';
+import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
 
 export default function Home() {
