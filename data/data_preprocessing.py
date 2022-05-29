@@ -28,7 +28,7 @@ sp = spotipy.Spotify(
     )
 )
 
-df = pd.read_csv("../data/data.csv")
+df = pd.read_csv("./data.csv")
 
 
 def thread_function(id, start, end):
@@ -164,5 +164,5 @@ now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 print("End Time =", current_time)
 
-df.to_csv("../data/data_w_img.csv", index=False)
+df.to_csv("./data_w_img.csv", index=False)
 print("CSV WRITTEN")
