@@ -25,7 +25,7 @@ Vectors of all the songs are created by using the numerical values of these audi
 ## Installation
 * Git clone the repository to your local system and open it in terminal/cmd.
 * Change the directory to engine: `cd engine/`.
-* Install Python dependencies: `pip intall -r requirements.txt` or `python -m pip install -r requirements.txt`.
+* Install Python dependencies: `pip install -r requirements.txt` or `python -m pip install -r requirements.txt`.
 * Start the Flask API server: `python api.py`.
 * Open the repository in another instance of terminal/cmd.
 * Change the directory to web: `cd web/`.
