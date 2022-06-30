@@ -23,6 +23,7 @@ Vectors of all the songs are created by using the numerical values of these audi
 **Note:** You need to set up some environment variables in the .env file in the root directory of the project and in the .env.local file in the `web/` subdirectory of the project.
 
 ## Installation
+**Note:** Python 3.10 has an issue with project's dependencies, please use Python 3.9
 * Git clone the repository to your local system and open it in terminal/cmd.
 * Change the directory to engine: `cd engine/`.
 * Install Python dependencies: `pip install -r requirements.txt` or `python -m pip install -r requirements.txt`.
